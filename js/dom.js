@@ -140,9 +140,86 @@ console.log(newDiv);
 
 // --Event Listeners------------------------------------------------------------
 
-let button = document.getElementById('button').addEventListener('click', buttonClick);
+/* let button = document.getElementById('button').addEventListener('click', buttonClick);
 
-function buttonClick() {
+/* function buttonClick() {
     //console.log('Button Clicked');
-    document.getElementById('header-title').textContent = 'Changed';
+    document.getElementById('header-title').textContent = 'List \'Em Head';
+    document.querySelector('#main').style.backgroundColor = 'skyblue';
+}; */ //-- function that sets "buttonClick" to change the header-title and main background when button is clicked
+
+/* function buttonClick(e) {
+    // console.log(e); -- shows all events when button is Clicked
+    /* console.log(e.target);
+    console.log(e.target.id);
+    console.log(e.target.className);
+    console.log(e.target.classList);
+    let output = document.getElementById('output')
+    output.innerHTML = '<h3>' + e.target.id + '</h3>'; // outputs "button" on web display when button is clicked
+
+    console.log(e.type); // cosonle logs as "click"
+
+    console.log(e.clientX); // gives mouse pointer position on X-axis in the window
+    console.log(e.clientY); // gives mouse pointer position on Y-axis in the window
+    console.log(e.offsetX); // gives mouse pointer position on X-axis in relation to the element itself
+    console.log(e.offsetY); // gives mouse pointer position on Y-axis in relation to the element itself
+
+console.log(e.altKey); // checks for alt-key hold down while pushed and gives true / false
+console.log(e.ctrlKey); // checks for ctrl-key hold down while pushed and gives true / false
+console.log(e.shiftKey); // checks for shift-key hold down while pushed and gives true / false
+
+}; */
+
+let button = document.getElementById('button');
+let box = document.getElementById('box');
+
+
+// button.addEventListener('click', runEvent); //consle log - 'EVENT TYPE: click'
+button.addEventListener('dblclick', runEvent); //consle log - 'EVENT TYPE: dblclick' when double clicked
+// button.addEventListener('mousedown', runEvent); //consle log - 'EVENT TYPE: mousedown' - doesn't wait for click, shows 'mousedown' as soon as the button is held down
+button.addEventListener('mouseup', runEvent); //consle log - 'EVENT TYPE: mouseup' opposite of mousedown
+
+box.addEventListener('mouseenter', runEvent); //consle log - 'EVENT TYPE: mouseenter' in the box div
+// box.addEventListener('mouseleave', runEvent); //consle log - 'EVENT TYPE: mouseleave' 
+
+box.addEventListener('mouseover', runEvent); //consle log - 'EVENT TYPE: mouseover' - fires off over the <h3> element
+// box.addEventListener('mouseout', runEvent); //consle log - 'EVENT TYPE: mouseout' 
+
+box.addEventListener('mousemove', runEvent); // 'EVENT TYPE: mousemove' fires off when the mouse moves in the box div -- you can grab the cursor postion from this information and output it as follows
+
+
+function runEvent(e) {
+    e.preventDefault(); // allows the submit to be held
+    console.log('EVENT TYPE: ' + e.type);
+
+    console.log(e.target.value);
+    document.getElementById('output').innerHTML = '<h3>' + e.target.value + '</h3>';
+    // will output your keystrokes in the form field onto the html
+
+    // output.innerHTML = '<h3>MouseX: ' + e.offsetX + ' </h3><h3>MouseY: ' + e.offsetY + ' </h3>'; // displays mouse cursor coordintates  in the HTML (under Them 'EMs)
+
+    box.style.backgroundColor = "rgb(" + e.offsetX + ", " + e.offsetY + ",40)"; // div box will change color as you scroll through it 
+
+    document.body.style.backgroundColor = "rgb(" + e.offsetX + ", " + e.offsetY + ",40)"; // background body will change color as you scroll through the div box 
 };
+
+const itemInput = document.querySelector('input[type="text"]');
+const form = document.querySelector('form');
+const select = document.querySelector('select');
+
+/* itemInput.addEventListener('keydown', runEvent); // runs when keyboard key is pushed in form
+itemInput.addEventListener('keyup', runEvent); // runs when keyboard key is released in form
+itemInput.addEventListener('keypress', runEvent); */ // runs when keyboard key is pressed down in form
+
+/* itemInput.addEventListener('focus', runEvent); // click in the form field console log 'focus'
+itemInput.addEventListener('blur', runEvent); // click off the form field console log 'blur'
+
+itemInput.addEventListener('cut', runEvent); // when someone cuts then it console.log
+itemInput.addEventListener('paste', runEvent); // when someone paste
+
+itemInput.addEventListener('input', runEvent); // for any input in the form field */
+
+select.addEventListener('change', runEvent);
+select.addEventListener('input', runEvent);
+
+form.addEventListener('submit', runEvent);
